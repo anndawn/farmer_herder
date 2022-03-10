@@ -14,7 +14,6 @@
   "version": "1.0.0",
   "scripts": {
     "start": "parcel ./*.html",
-    "build": "parcel build src/map.html",
     "dev": "parcel src/main.js",
     "prod": "parcel build src/map.html"
   },
