@@ -15,7 +15,6 @@
   "scripts": {
     "start": "parcel ./*.html",
     "build": "parcel build src/map.html",
-    "predeploy": "rm -rf dist && parcel build ./*.html --public-url 'https://github.com/anndawn/farmer_herder_Nigeria.git'",
     "dev": "parcel src/main.js",
     "prod": "parcel build src/map.html"
   },
