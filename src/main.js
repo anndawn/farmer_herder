@@ -3,24 +3,13 @@ import mapboxgl from 'mapbox-gl';
 import { Mapbox } from '@antv/l7-maps';
 
 
-// const scene = new Scene({
-//   id: 'map',
-//   map: new Mapbox({
-//     style: 'light',
-//     center: [ 9.05785,7.49508 ],
-//     pitch: 0,
-//     zoom: 2.5,
-//     token: 'pk.eyJ1IjoidWNzdiIsImEiOiJjbDBqOW9xNGswYTkzM2xwNnN6amJyc3Y2In0.pphwrZosJ1MConeUW226xg'
-//   }),
-// });
-
 mapboxgl.accessToken =
   'pk.eyJ1IjoidWNzdiIsImEiOiJjbDBqOW9xNGswYTkzM2xwNnN6amJyc3Y2In0.pphwrZosJ1MConeUW226xg';
 const map = new mapboxgl.Map({
   container: 'map', // container id
   style: 'mapbox://styles/mapbox/light-v10', // stylesheet location
   center:  [ 9.05785,7.49508 ], // starting position [lng, lat]
-  zoom: 1, // starting zoom
+  zoom: 2.5, // starting zoom
 });
 
 const scene = new Scene({
@@ -45,21 +34,13 @@ scene.on('loaded', () => {
         cluster: true
       });
       const pointLayer = new PointLayer({
-        autoFit: true
+        autoFit: false
       })
         .source(dataSource)
         .shape('circle')
         .scale('point_count', {
           type: 'log'
         })
-        // .size('point_count', [ 5, 10, 15, 20, 25 ])
-        // .active(true)
-        // .color('rgb(73,167,86)')
-        // .style({
-        //   opacity: 1,
-        //   strokeWidth: 1,
-        //   stroke: '#fff'
-        // });
         .size('point_count', [ 5, 25 ])
         .color('#5B8FF9')
         .style({
@@ -25855,14 +25836,16 @@ scene.on('loaded', () => {
         
         const hightLayer = new LineLayer({
           zIndex: 4, // 设置显示层级
-          name: 'hightlight'
+          name: 'hightlight',
+          autoFit: true
+
         })
           .source(border_data)
           .shape('line')
           .size(2)
           .color('#65789B')
           .style({
-            opacity: 2
+            opacity: 1
           });
 
       scene.addLayer(hightLayer);
