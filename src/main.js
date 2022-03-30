@@ -47,7 +47,7 @@ scene.on('loaded', () => {
         .scale('point_count', {
           type: 'log'
         })
-        .size('point_count', [ 5, 25 ])
+        .size('point_count', [ 6, 25 ])
         .color('#5B8FF9')
         .style({
           opacity: 0.8,
@@ -56,17 +56,22 @@ scene.on('loaded', () => {
 
       // 聚合图标注
       const pointLayerText = new PointLayer({
-        autoFit: false
+        autoFit: false,
+        zIndex: 6
+
       })
         .source(dataSource)
         .shape('point_count', 'text')
-        .size(15)
+        .size(14)
         .active(true)
         .color('#fff')
         .style({
           opacity: 1,
           strokeWidth: 0,
-          stroke: '#fff'
+          stroke: '#fff',
+          fontWeight:'700',
+          textOffset: [ 0, -3 ], 
+
 
         });
         
@@ -26361,7 +26366,7 @@ scene.on('loaded', () => {
         .color('black')
         .style({
           textAnchor: 'center', 
-          textOffset: [ -74, 18 ], 
+          textOffset: [ -74, 15 ], 
           spacing: 0, 
           padding: [ 1, 1 ], 
           stroke: '#ffffff',
@@ -26393,10 +26398,27 @@ scene.on('loaded', () => {
             .shape('fill')
             .style({
               speed: 0.4,
-              opacity:0.8
+              opacity:0.9,
+              stroke: '#ffffff',
+              strokeWidth: 0.5, 
+              strokeOpacity: 0.8,
             })
- 
 
+
+          const wetlandLine = new PolygonLayer({
+            zIndex: 5 // 设置显示层级
+          })
+            .source(wetland_data)
+            .color('#65789B')
+            .shape('line')
+            .style({
+              opacity:0.3,
+              strokeWidth: 0.05,
+              strokeOpacity: 0.6
+
+
+            });
+            
             const yusufariLayer = new PolygonLayer({
               zIndex: 5 // 设置显示层级
             })
@@ -26406,8 +26428,20 @@ scene.on('loaded', () => {
               .style({
                 opacity:0.6
               })
-
-
+              const yusufariLine = new PolygonLayer({
+                zIndex: 5 // 设置显示层级
+              })
+                .source(yusufari_data)
+                .color('#65789B')
+                .shape('line')
+                .style({
+                  opacity:0.3,
+                  strokeWidth: 0.05,
+                  strokeOpacity: 0.6
+    
+    
+                });
+                
 
 
 
@@ -26417,13 +26451,18 @@ scene.on('loaded', () => {
 
       scene.addLayer(wetlandLayer);
       scene.addLayer(yusufariLayer);
+      scene.addLayer(yusufariLine);
 
+
+      scene.addLayer(wetlandLine);
 
       scene.addLayer(pointLayer);
       scene.addLayer(pointLayerText);
 
 
-
+ 
+  
 
     });
 });
+
