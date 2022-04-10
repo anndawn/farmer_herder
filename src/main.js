@@ -47,7 +47,7 @@ scene.on('loaded', () => {
         .scale('point_count', {
           type: 'log'
         })
-        .size('point_count', [ 6, 25 ])
+        .size('point_count', [ 7, 28 ])
         .color('#5B8FF9')
         .style({
           opacity: 0.8,
@@ -62,7 +62,7 @@ scene.on('loaded', () => {
       })
         .source(dataSource)
         .shape('point_count', 'text')
-        .size(14)
+        .size(15)
         .active(true)
         .color('#fff')
         .style({
